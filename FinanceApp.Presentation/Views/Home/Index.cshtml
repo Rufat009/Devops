@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center index">
+    <h1 class="display-4">
+        <span>Welcome to Finance App!</span>
+        <br>
+        <br>
+        Take control of your finances like never before.
+        <br>
+        Our intuitive platform empowers you to manage your money with ease.
+        <br>
+        Start your journey to financial freedom today with Finance App!
+    </h1>
+
+    <div class="gallery">
+        <img src="~/Assets/AzerbaijanAirlines.png">
+        <img src="~/Assets/TurkishAirlines.png">
+        <img src="~/Assets/Aeroflot.jpg">
+        <img src="~/Assets/IBERIA.jpg">
+        <img src="~/Assets/QatarAirways.jpg">
+        <img src="~/Assets/SWISS.png">
+    </div>
+</div>
+
+<style>
+    .index {
+        margin-top: 100px;
+    }
+
+    .index h1 {
+        color: #fff;
+        font-size: 24px;
+    }
+
+    .index h1 span {
+        font-size: 38px;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 100px;
+        margin: 50px 0 50px 80px;
+    }
+
+    .gallery img {
+        border-radius: 10px;
+        width: 250px;
+        height: 250px;
+    }
+</style>

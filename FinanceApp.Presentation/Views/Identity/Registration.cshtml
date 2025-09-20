@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Registration";
+
+    string Name = string.Empty;
+    string Surname = string.Empty;
+    string Age = string.Empty;
+    decimal Balance = default;
+    string Email = string.Empty;
+    string Password = string.Empty;
+    string AbonentNumber = string.Empty;
+}
+
+<form asp-action="Registration" method="post" class="ring"> 
+    <div class="login">
+        <h2>Registration</h2>
+        <div class="inputBx">
+            <input asp-for="@Name" type="text" placeholder="Name">
+        </div>
+        <div class="inputBx">
+            <input asp-for="@Surname" type="text" placeholder="Surname">
+        </div>
+        <div class="inputBx">
+            <input asp-for="@Age" type="number" placeholder="Age">
+        </div>
+        <div class="inputBx">
+            <input asp-for="@AbonentNumber" maxlength="5" type="number" oninput="maxLengthCheck(this)" placeholder="Abonent Number">
+        </div>
+        <input hidden asp-for="@Balance" type="text">
+        <div class="inputBx">
+            <input asp-for="@Email" type="email" placeholder="Email">
+        </div>
+        <div class="inputBx">
+            <input asp-for="@Password" type="password" placeholder="Password">
+        </div>
+        <div class="inputBx">
+            <input type="submit" value="Register">
+        </div>
+        <div class="text-danger" asp-validation-summary="All"></div>
+    </div>
+</form>
+
+<script>
+    function maxLengthCheck(object) {
+        if (object.value.length > object.maxLength) {
+            object.value = object.value.slice(0, object.maxLength);
+        }
+    }
+</script>

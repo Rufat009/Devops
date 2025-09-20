@@ -1,0 +1,57 @@
+﻿@{
+    bool isAuthenticated = base.User.Identity.IsAuthenticated;
+    bool isAdmin = base.User.IsInRole("Admin");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FinanceApp.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" </head>
+
+<body>
+    <header class="header">
+        <a href="/Home/Index" class="logo">Finance App</a>
+
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <nav class="navbar">
+            @if (isAuthenticated)
+            {
+                <a asp-controller="Finance" asp-action="Services">Services</a>
+                <a asp-controller="Finance" asp-action="History">History</a>
+                <a asp-controller="Identity" asp-action="Profile">Profile</a>
+            }
+            @if (!isAuthenticated)
+            {
+                <a asp-controller="Identity" asp-action="Login">Login</a>
+                <a asp-controller="Identity" asp-action="Registration">Registration</a>
+            }
+            @if (isAuthenticated)
+            {
+                <a asp-controller="Identity" asp-action="LogOut">Logout</a>
+            }
+
+            <span class="active-nav"></span>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+@model User
+
+@{
+    ViewData["Title"] = "Profile";
+    var isAdmin = base.User.IsInRole("Admin");
+
+    var id = Model.Id;
+}
+
+<div class="profile-div">
+    <form  class="profile-form">
+        <p class="form-name">Profile</p>
+
+        <label asp-for="@Model.UserName">Name:</label>
+        <input asp-for="@Model.UserName" type="text">
+
+        @if (!isAdmin)
+        {
+            <label asp-for="@Model.Surname">Surname:</label>
+            <input asp-for="@Model.Surname" type="text">
+
+            <label asp-for="@Model.Age">Age:</label>
+            <input asp-for="@Model.Age" type="text">
+
+            <label asp-for="@Model.AbonentNumber">Abonent Number:</label>
+            <input asp-for="@Model.AbonentNumber" maxlength="5" oninput="maxLengthCheck(this)" type="text">
+        }
+        <label asp-for="@Model.Email">Email:</label>
+        <input asp-for="@Model.Email" type="email">
+
+        <input hidden asp-for="@Model.Id" type="text">
+
+        <button type="submit">Edit</button>
+    </form>
+</div>
+
+<form class="ring" asp-action="Edit" method="post">
+    <div class="login">
+        <h2>Edit</h2>
+        <div class="inputBx">
+            <input asp-for="@Model.UserName" type="text">
+        </div>
+        @if (!isAdmin)
+        {
+            <div class="inputBx">
+                <input asp-for="@Model.Surname" type="text">
+            </div>
+            <div class="inputBx">
+                <input asp-for="@Model.Age" type="text">
+            </div>
+            <div class="inputBx">
+                <input asp-for="@Model.AbonentNumber" maxlength="5" oninput="maxLengthCheck(this)" type="text">
+            </div>
+        }
+        <div class="inputBx">
+            <input asp-for="@Model.Email" type="email">
+        </div>
+        <input hidden asp-for="@Model.Id" type="text">
+        <div class="inputBx">
+            <input type="submit" value="Edit">
+        </div>
+
+    </div>
+</form>

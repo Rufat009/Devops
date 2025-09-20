@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Login";
+    string Password = string.Empty;
+    string Email = string.Empty;
+}
+
+<form asp-action="Login" asp-controller="Identity" method="post" class="ring">
+    <i style="--clr:#00ff0a;"></i>
+    <i style="--clr:#ff0057;"></i>
+    <i style="--clr:#fffd44;"></i>
+    <div class="login">
+        <h2>Login</h2>
+        <div class="inputBx">
+            <input asp-for="@Email" type="email" placeholder="Email">
+        </div>
+        <div class="inputBx">
+            <input asp-for="@Password" type="password" placeholder="Password">
+        </div>
+        <div class="inputBx">
+            <input type="submit" value="Login">
+        </div>
+        <div class="text-danger" asp-validation-summary="All"></div>
+    </div>
+</form>

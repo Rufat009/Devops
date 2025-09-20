@@ -1,0 +1,76 @@
+@model User
+
+@{
+    ViewData["Title"] = "Profile";
+    var isAdmin = base.User.IsInRole("Admin");
+}
+
+<form class="ring">
+    <div class="login">
+        <h2>Profile</h2>
+        <div class="inputBx">
+            <input type="text" value="Name: @Model.UserName" readonly>
+        </div>
+        @if (!isAdmin)
+        {
+            <div class="inputBx">
+                <input type="text" value="Surname: @Model.Surname" readonly>
+            </div>
+            <div class="inputBx">
+                <input type="text" value="Age: @Model.Age" readonly>
+            </div>
+        }
+        <div class="inputBx">
+            <input type="email" value="Email: @Model.Email" readonly>
+        </div>
+        <div class="inputBx">
+            <input type="text" value="Balance: @Model.Balance" readonly>
+        </div>
+        <div class="inputBx">
+            <input type="text" value="Abonent Number: @Model.AbonentNumber" readonly>
+        </div>
+
+        <div class="profile-links">
+            @if (!isAdmin)
+            {
+                <div class="inputBx">
+                    <a class="edit" href="/Identity/Edit?id=@Model.Id">Edit</a>
+                </div>
+            }
+
+            <div class="inputBx">
+                <a class="change" href="/Identity/ChangeBalance">Change Balance</a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<style>
+    .profile-links {
+        display: flex;
+        flex-direction: row;
+        width: 300px;
+        }
+
+    .profile-links a {
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        background-color: #0088c2;
+    }
+
+    .edit {
+        padding: 12px 66px;
+    }
+
+    .change {
+        margin-left: 6px;
+        padding: 12px 30px;
+    }
+
+    .profile-links a:hover {
+        background-color: #056289;
+        transition: .3s;
+    }
+</style>
