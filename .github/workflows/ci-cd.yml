@@ -40,6 +40,9 @@ jobs:
         push: true
         tags: ${{ env.REGISTRY }}/financeapp:${{ env.IMAGE_TAG }}
 
+    # Note: Azure CLI steps removed due to service principal permission issues
+    # Container registry authentication must be configured manually in Azure Portal
+
     - name: Deploy FinanceApp to Azure Web App
       uses: azure/webapps-deploy@v3
       with:
